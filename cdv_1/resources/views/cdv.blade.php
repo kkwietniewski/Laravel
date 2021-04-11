@@ -68,8 +68,26 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                <p>
                                     Imię i nazwisko: {{$name}} {{$surname}}<br>
                                     Miasto: {{$city}}
+                                </p>
+                                @if ($city == "Poznań")
+                                    <p>Mieszkasz w województwie wielkopolskim</p>
+                                @elseif ($city == "Wrocław")
+                                    <p>Mieszkasz w województwie dolnośląskim</p>
+                                @else
+                                    <p>Mieszkasz w innych miastach niż Poznań lub Wrocław</p>
+                                @endif
+
+                                @unless ($city=="Wrocław")
+                                    <p>Twoja lokalizacja jest inna niż Wrocław</p>
+                                @endunless
+
+                                @php
+                                    $lenCity = strlen(utf8_decode($city));
+                                    echo "Nazwa miasta ma długość: $lenCity liter";
+                                @endphp
                                 </div>
                             </div>
                         </div>
