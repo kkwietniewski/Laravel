@@ -5,6 +5,7 @@ use \App\Http\Controllers\CdvSite;
 use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\UserController1;
+use \App\Http\Controllers\Contact;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,3 +110,7 @@ Route::get('usercontroller', [UserController::class, 'account']);
 Route::view('user', 'user');
 
 Route::get('usercontroller1', [UserController1::class, 'index']);
+
+Route::view('contactform', 'contactform');
+
+Route::get('Contact', [Contact::class, 'register']);

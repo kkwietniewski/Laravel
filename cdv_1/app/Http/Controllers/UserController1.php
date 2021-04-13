@@ -15,12 +15,24 @@ class UserController1 extends Controller
         // return $req->method();
         
         
+        // $this->validate(
+        //     $req, 
+        //     ['address' => 'required'], 
+        //     ['address.required' => 'Adres nie może być pusty']
+        // );
+
         $req->validate(
             [
-                    'address' => 'required',
-                    'email' => 'required'
-                ]
-            );
+                'address' => 'required | min:4',
+                'email' => 'required | email'
+            ],
+            [
+                'address.required' => 'Pole adres jest wymagane!',
+                'address.min' => 'Pole adres musi mieć minimum 4 znaki!',
+                'email.required' => 'Pole email jest wymagane!',
+                'email.email' => 'Pole email musi być w odpowiedniej formie (xx@xx.xx)!'
+            ]
+        );
         foreach ($req->all() as $key => $value){
             echo $key . ' - ' .$value . "<br>";
         }
