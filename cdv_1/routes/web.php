@@ -114,3 +114,10 @@ Route::get('usercontroller1', [UserController1::class, 'index']);
 Route::view('contactform', 'contactform');
 
 Route::get('Contact', [Contact::class, 'register']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
