@@ -6,6 +6,8 @@ use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\UserController1;
 use \App\Http\Controllers\Contact;
+use \App\Http\Controllers\Data;
+use \App\Http\Controllers\ExchangeRate;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +120,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('data', [Data::class, 'getPosts']);
+
+Route::get('album', [Data::class, 'getAlbums']);
+
+Route::get('kursy', [ExchangeRate::class, 'getRate']);
+
+Route::view('kalkulatorwalut', 'ratecalc');
+
+Route::get('ExchangeRate', [ExchangeRate::class, 'calcRate']);
+Auth::routes();
