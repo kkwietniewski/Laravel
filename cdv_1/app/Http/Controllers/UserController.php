@@ -10,4 +10,8 @@ class UserController extends Controller
     {
         return $req->input();
     }
+    public function index()
+    {
+        return view('homeUser');
+    }
 }

@@ -10,6 +10,8 @@ use \App\Http\Controllers\ExchangeRate;
 use \App\Http\Controllers\PageController;
 use \App\Http\Controllers\UserController1;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,13 +115,13 @@ Route::view('contactform', 'contactform');
 Route::get('Contact', [Contact::class, 'register']);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout']);
+Route::get('logout', [HomeController::class, 'logout']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('data', [Data::class, 'getPosts']);
 
@@ -142,3 +144,7 @@ Route::get('profile/{lang}', function ($lang) {
     App::setLocale($lang);
     return view('profile');
 });
+
+
+Route::get('user', [UserController::class, 'index'])->name('user');
+Route::get('admin', [AdminController::class, 'index'])->name('admin');
