@@ -12,6 +12,8 @@ use \App\Http\Controllers\UserController1;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\Login;
+use \App\Http\Controllers\Cdv1;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,3 +150,34 @@ Route::get('profile/{lang}', function ($lang) {
 
 Route::get('user', [UserController::class, 'index'])->name('user');
 Route::get('admin', [AdminController::class, 'index'])->name('admin');
+
+Route::view('login', 'login');
+Route::post('login', [Login::class, 'index']);
+Route::view('profile', 'profileSession');
+
+Route::get('logout', function(){
+    session()->forget('data');
+    return redirect('login');
+});
+
+Route::get('profile', function()
+{
+    if(!session()->has('data')){
+        return redirect('login');
+    }
+
+    return view('profileSession');
+});
+
+Route::view('form', 'form');
+Route::post('cdv', [Cdv1::class, 'shop']);
+
+Route::get('send', function(){
+    $details = [
+        'title' => 'CDV - Email',
+        'body' => 'Wiadomość testowa',
+    ];
+
+    \Mail::to('kwietniewski.kacperr@gmail.com')->send(new \App\Mail\TestMail($details));
+    echo 'Wiadomość wysłana pomyślnie';
+});
